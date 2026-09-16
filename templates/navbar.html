@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Employee Management System</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: aliceblue;
+        }
+
+        /* ---------------- NAVBAR ---------------- */
+
+        nav {
+            background-color: #302b63;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* LOGO + SYSTEM NAME */
+
+        .brand {
+            display: flex;
+            align-items: center;
+            margin-right: auto;
+        }
+
+        .brand img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            margin-right: 12px;
+        }
+
+        .system-name {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* NAVIGATION LINKS */
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #00bcd4;
+        }
+
+        /* LOGIN BUTTON */
+
+        .login-btn {
+            background-color: #00bcd4;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        /* REGISTER BUTTON */
+
+        .register-btn {
+            background-color: #8e44ad;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        /* ---------------- HEADING ---------------- */
+
+        h1 {
+            text-align: center;
+            margin-top: 70px;
+            color: #302b63;
+        }
+
+        /* ---------------- INFORMATION ---------------- */
+
+        .information {
+            width: 80%;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .information h2 {
+            color: #302b63;
+            margin-bottom: 15px;
+        }
+
+        .information p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .information ul {
+            line-height: 2;
+            color: #444;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <!-- LOGO + SYSTEM NAME -->
+
+        <div class="brand">
+
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Employee Management System Logo">
+
+            <span class="system-name">
+                Employee Management System
+            </span>
+
+        </div>
+
+
+        <!-- NAVIGATION LINKS -->
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/employee">
+            Employee
+        </a>
+
+        <a href="/add-employee">
+            Add Employee
+        </a>
+
+        <a href="/search">
+            Search
+        </a>
+
+        <a href="/login" class="login-btn">
+            Login
+        </a>
+
+        <a href="/register" class="register-btn">
+            Register
+        </a>
+
+    </nav>
+
+
+    <!-- ================= MAIN HEADING ================= -->
+
+    <h1>
+        Welcome to Employee Management System
+    </h1>
+
+
+    <!-- ================= INFORMATION ================= -->
+
+    <div class="information">
+
+        <h2>
+            About Employee Management System
+        </h2>
+
+        <p>
+            Employee Management System is a simple web application
+            used to manage employee information in an organization.
+        </p>
+
+        <p>
+            This system helps to store, view, search, update and
+            delete employee details easily.
+        </p>
+
+
+        <h2>
+            Features
+        </h2>
+
+        <ul>
+
+            <li>
+                Add new employee details
+            </li>
+
+            <li>
+                View employee information
+            </li>
+
+            <li>
+                Search employees by name
+            </li>
+
+            <li>
+                Edit employee details
+            </li>
+
+            <li>
+                Delete employee details
+            </li>
+
+            <li>
+                User Registration and Login
+            </li>
+
+        </ul>
+
+    </div>
+
+</body>
+
+</html>
