@@ -2,42 +2,213 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Registration Form</title>
+
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: aliceblue;
+        }
+
+        /* ---------------- REGISTRATION CONTAINER ---------------- */
+
+        .register-container {
+            width: 350px;
+            margin: 70px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ---------------- HEADING ---------------- */
+
+        h2 {
+            text-align: center;
+            color: #302b63;
+            margin-bottom: 30px;
+        }
+
+        /* ---------------- LABELS ---------------- */
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* ---------------- INPUTS ---------------- */
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* ---------------- BUTTONS ---------------- */
+
+        input[type="submit"] {
+            width: 48%;
+            padding: 12px;
+            background-color: #302b63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #00bcd4;
+        }
+
+        button {
+            width: 48%;
+            padding: 12px;
+            background-color: #777;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        /* ---------------- LOGIN LINK ---------------- */
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        .login-link a {
+            color: #302b63;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            color: #00bcd4;
+        }
+
+        /* ---------------- DARK THEME ---------------- */
+
+        body.dark-mode {
+            background-color: #1e1e1e;
+        }
+
+        body.dark-mode .register-container {
+            background-color: #2b2b2b;
+        }
+
+        body.dark-mode h2 {
+            color: #00bcd4;
+        }
+
+        body.dark-mode label {
+            color: white;
+        }
+
+        body.dark-mode input[type="text"],
+        body.dark-mode input[type="password"] {
+            background-color: #3a3a3a;
+            color: white;
+            border-color: #666;
+        }
+
+        body.dark-mode .login-link {
+            color: #ddd;
+        }
+
+        body.dark-mode .login-link a {
+            color: #00bcd4;
+        }
+    </style>
+
 </head>
+
 
 <body>
 
-    <h2>Registration Form</h2>
+    <div class="register-container">
 
-    <form id="registrationForm" action="/register" method="post">
+        <h2>Registration Form</h2>
 
-        <label>Full Name:</label>
-        <input type="text" id="fullname" name="fullname" required>
 
-        <br><br>
+        <form id="registrationForm" action="/register" method="post">
 
-        <label>Username:</label>
-        <input type="text" id="username" name="username" required>
 
-        <br><br>
+            <label>Full Name:</label>
 
-        <label>Password:</label>
-        <input type="password" id="password" name="password" required>
+            <input type="text" id="fullname" name="fullname" required>
 
-        <br><br>
 
-        <input type="submit" value="Register">
+            <label>Username:</label>
 
-        <button type="button" onclick="resetForm()">Reset</button>
+            <input type="text" id="username" name="username" required>
 
-    </form>
+
+            <label>Password:</label>
+
+            <input type="password" id="password" name="password" required>
+
+
+            <input type="submit" value="Register">
+
+            <button type="button" onclick="resetForm()">
+                Reset
+            </button>
+
+        </form>
+
+
+        <div class="login-link">
+
+            Already have an account?
+            <a href="/login">Login</a>
+
+        </div>
+
+    </div>
+
+
+    <!-- RESET FORM -->
 
     <script>
+
         function resetForm() {
+
             document.getElementById("registrationForm").reset();
+
         }
+
+
+        /* ---------------- LOAD SAVED THEME ---------------- */
+
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme === "dark") {
+
+            document.body.classList.add("dark-mode");
+
+        }
+
     </script>
 
 </body>

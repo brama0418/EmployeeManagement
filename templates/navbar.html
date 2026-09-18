@@ -19,6 +19,7 @@
             padding: 10px 15px;
             display: flex;
             align-items: center;
+            box-sizing: border-box;
         }
 
         /* LOGO + SYSTEM NAME */
@@ -44,10 +45,16 @@
 
         /* NAVIGATION LINKS */
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 5px;
             font-size: 16px;
         }
 
@@ -55,20 +62,33 @@
             color: #00bcd4;
         }
 
-        /* LOGIN BUTTON */
+        /* LOGOUT BUTTON */
 
-        .login-btn {
-            background-color: #00bcd4;
+        .logout-btn {
+            background-color: #e74c3c;
             padding: 8px 15px;
             border-radius: 5px;
         }
 
-        /* REGISTER BUTTON */
+        .logout-btn:hover {
+            color: white;
+            background-color: #c0392b;
+        }
 
-        .register-btn {
-            background-color: #8e44ad;
+        /* THEME BUTTON */
+
+        .theme-btn {
+            background-color: #555;
+            color: white;
+            border: none;
             padding: 8px 15px;
             border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .theme-btn:hover {
+            background-color: #333;
         }
 
         /* ---------------- HEADING ---------------- */
@@ -105,6 +125,29 @@
             line-height: 2;
             color: #444;
         }
+
+        /* ---------------- DARK THEME ---------------- */
+
+        body.dark-mode {
+            background-color: #1e1e1e;
+        }
+
+        body.dark-mode h1 {
+            color: #00bcd4;
+        }
+
+        body.dark-mode .information {
+            background-color: #2b2b2b;
+        }
+
+        body.dark-mode .information h2 {
+            color: #00bcd4;
+        }
+
+        body.dark-mode .information p,
+        body.dark-mode .information ul {
+            color: #ddd;
+        }
     </style>
 
 </head>
@@ -130,29 +173,33 @@
 
         <!-- NAVIGATION LINKS -->
 
-        <a href="/">
-            Home
-        </a>
+        <div class="nav-links">
 
-        <a href="/employee">
-            Employee
-        </a>
+            <a href="/">
+                Home
+            </a>
 
-        <a href="/add-employee">
-            Add Employee
-        </a>
+            <a href="/employee">
+                Employee
+            </a>
 
-        <a href="/search">
-            Search
-        </a>
+            <a href="/add-employee">
+                Add Employee
+            </a>
 
-        <a href="/login" class="login-btn">
-            Login
-        </a>
+            <a href="/search">
+                Search
+            </a>
 
-        <a href="/register" class="register-btn">
-            Register
-        </a>
+            <a href="/logout" class="logout-btn">
+                Logout
+            </a>
+
+            <button onclick="toggleTheme()" class="theme-btn">
+                🌙 Dark
+            </button>
+
+        </div>
 
     </nav>
 
@@ -189,33 +236,71 @@
 
         <ul>
 
-            <li>
-                Add new employee details
-            </li>
+            <li>Add new employee details</li>
 
-            <li>
-                View employee information
-            </li>
+            <li>View employee information</li>
 
-            <li>
-                Search employees by name
-            </li>
+            <li>Search employees by name</li>
 
-            <li>
-                Edit employee details
-            </li>
+            <li>Edit employee details</li>
 
-            <li>
-                Delete employee details
-            </li>
+            <li>Delete employee details</li>
 
-            <li>
-                User Registration and Login
-            </li>
+            <li>User Registration and Login</li>
 
         </ul>
 
     </div>
+
+
+    <!-- ================= THEME SCRIPT ================= -->
+
+    <script>
+
+        function toggleTheme() {
+
+            document.body.classList.toggle("dark-mode");
+
+            const button = document.querySelector(".theme-btn");
+
+            if (document.body.classList.contains("dark-mode")) {
+
+                localStorage.setItem("theme", "dark");
+
+                button.innerHTML = "☀️ Light";
+
+            } else {
+
+                localStorage.setItem("theme", "light");
+
+                button.innerHTML = "🌙 Dark";
+
+            }
+
+        }
+
+
+        window.onload = function () {
+
+            const savedTheme = localStorage.getItem("theme");
+
+            const button = document.querySelector(".theme-btn");
+
+            if (savedTheme === "dark") {
+
+                document.body.classList.add("dark-mode");
+
+                button.innerHTML = "☀️ Light";
+
+            } else {
+
+                button.innerHTML = "🌙 Dark";
+
+            }
+
+        };
+
+    </script>
 
 </body>
 

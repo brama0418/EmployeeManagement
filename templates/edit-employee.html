@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -7,113 +8,295 @@
 
     <style>
         body {
+
             font-family: Arial, sans-serif;
+
             background-color: aliceblue;
+
+            color: #333;
+
+            transition: 0.3s;
+
         }
+
 
         .container {
+
             width: 60%;
+
             margin: 50px auto;
+
             padding: 30px;
+
             background-color: white;
+
             border-radius: 8px;
+
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+
         }
+
 
         h1 {
+
             text-align: center;
+
             color: #302b63;
+
             margin-bottom: 30px;
+
         }
 
+
         label {
+
             display: block;
+
             margin-top: 15px;
+
             margin-bottom: 5px;
+
             font-weight: bold;
+
         }
+
 
         input,
         select,
         textarea {
+
             width: 100%;
+
             padding: 10px;
+
             box-sizing: border-box;
+
+            background-color: white;
+
+            color: #333;
+
+            border: 1px solid #bbb;
+
+            border-radius: 4px;
+
         }
 
+
         button {
+
             display: block;
+
             margin: 25px auto 0;
+
             padding: 12px 25px;
+
             background-color: #00bcd4;
+
             color: white;
+
             border: none;
+
             border-radius: 5px;
+
             cursor: pointer;
+
+        }
+
+
+        button:hover {
+
+            background-color: #0097a7;
+
+        }
+
+
+        /* =========================
+           DARK THEME
+        ========================= */
+
+        body.dark-mode {
+
+            background-color: #1e1e1e;
+
+            color: white;
+
+        }
+
+
+        body.dark-mode .container {
+
+            background-color: #2b2b2b;
+
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+
+        }
+
+
+        body.dark-mode h1 {
+
+            color: #00bcd4;
+
+        }
+
+
+        body.dark-mode label {
+
+            color: white;
+
+        }
+
+
+        body.dark-mode input,
+        body.dark-mode select,
+        body.dark-mode textarea {
+
+            background-color: #3a3a3a;
+
+            color: white;
+
+            border-color: #666;
+
+        }
+
+
+        body.dark-mode input::placeholder,
+        body.dark-mode textarea::placeholder {
+
+            color: #bbb;
+
         }
     </style>
 
 </head>
 
+
 <body>
+
 
     <div class="container">
 
-        <h1>Edit Employee</h1>
+        <h1>
+            Edit Employee
+        </h1>
+
 
         <form action="/edit-employee/{{ employee[0] }}" method="POST">
 
-            <label>Employee Name</label>
+
+            <label>
+                Employee Name
+            </label>
+
             <input type="text" name="name" value="{{ employee[1] }}" required>
 
-            <label>Email</label>
+
+            <label>
+                Email
+            </label>
+
             <input type="email" name="email" value="{{ employee[2] }}" required>
 
-            <label>Phone Number</label>
+
+            <label>
+                Phone Number
+            </label>
+
             <input type="tel" name="phone" value="{{ employee[3] }}" required>
 
-            <label>Department</label>
+
+            <label>
+                Department
+            </label>
+
 
             <select name="department" required>
 
+
                 <option value="IT" {% if employee[4]=="IT" %}selected{% endif %}>
+
                     IT
+
                 </option>
+
 
                 <option value="HR" {% if employee[4]=="HR" %}selected{% endif %}>
+
                     HR
+
                 </option>
+
 
                 <option value="Finance" {% if employee[4]=="Finance" %}selected{% endif %}>
+
                     Finance
+
                 </option>
+
 
                 <option value="Marketing" {% if employee[4]=="Marketing" %}selected{% endif %}>
+
                     Marketing
+
                 </option>
 
+
                 <option value="Sales" {% if employee[4]=="Sales" %}selected{% endif %}>
+
                     Sales
+
                 </option>
+
 
             </select>
 
-            <label>Salary</label>
+
+            <label>
+                Salary
+            </label>
+
             <input type="number" name="salary" value="{{ employee[5] }}" required>
 
-            <label>Joining Date</label>
+
+            <label>
+                Joining Date
+            </label>
+
             <input type="date" name="joining_date" value="{{ employee[6] }}" required>
 
-            <label>Address</label>
+
+            <label>
+                Address
+            </label>
+
             <textarea name="address" rows="4" required>{{ employee[7] }}</textarea>
+
 
             <button type="submit">
                 Update Employee
             </button>
 
+
         </form>
 
     </div>
+
+
+    <!-- =========================
+         LOAD SAVED THEME
+    ========================= -->
+
+    <script>
+
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme === "dark") {
+
+            document.body.classList.add("dark-mode");
+
+        }
+
+    </script>
+
 
 </body>
 

@@ -2,8 +2,11 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Employee Management System</title>
 
     <style>
@@ -16,9 +19,13 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f6f8;
+            color: #333;
+            transition: 0.3s;
         }
 
+
         /* Navigation Bar */
+
         nav {
             background-color: #2c3e50;
             padding: 18px 40px;
@@ -35,6 +42,7 @@
             list-style: none;
             display: flex;
             gap: 25px;
+            align-items: center;
         }
 
         nav ul li a {
@@ -47,7 +55,26 @@
             color: #3498db;
         }
 
+
+        /* Theme Button */
+
+        .theme-btn {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .theme-btn:hover {
+            background-color: #333;
+        }
+
+
         /* Home Section */
+
         .home {
             text-align: center;
             padding: 100px 20px;
@@ -65,6 +92,9 @@
             margin-bottom: 30px;
         }
 
+
+        /* Button */
+
         .btn {
             display: inline-block;
             padding: 12px 25px;
@@ -78,7 +108,9 @@
             background-color: #2980b9;
         }
 
+
         /* Cards */
+
         .cards {
             display: flex;
             justify-content: center;
@@ -104,7 +136,9 @@
             color: #666;
         }
 
+
         /* Footer */
+
         footer {
             background-color: #2c3e50;
             color: white;
@@ -112,58 +146,242 @@
             padding: 15px;
             margin-top: 50px;
         }
+
+
+        /* =========================
+           DARK THEME
+        ========================= */
+
+        body.dark-mode {
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        body.dark-mode .home h1 {
+            color: #00bcd4;
+        }
+
+        body.dark-mode .home p {
+            color: #ddd;
+        }
+
+        body.dark-mode .card {
+            background-color: #2b2b2b;
+        }
+
+        body.dark-mode .card h3 {
+            color: #00bcd4;
+        }
+
+        body.dark-mode .card p {
+            color: #ddd;
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 900px) {
+
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+        }
     </style>
+
 </head>
+
 
 <body>
 
+
     <!-- Navigation Bar -->
+
     <nav>
-        <h2>Employee Management</h2>
+
+        <h2>
+            Employee Management
+        </h2>
+
 
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="employees.html">Employees</a></li>
-            <li><a href="addemployee.html">Add Employee</a></li>
-            <li><a href="login.html">Login</a></li>
+
+            <li>
+                <a href="/">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="/employee">
+                    Employees
+                </a>
+            </li>
+
+            <li>
+                <a href="/add-employee">
+                    Add Employee
+                </a>
+            </li>
+
+            <li>
+                <a href="/login">
+                    Login
+                </a>
+            </li>
+
+            <li>
+
+                <button onclick="toggleTheme()" class="theme-btn">
+                    🌙 Dark
+                </button>
+
+            </li>
+
         </ul>
+
     </nav>
 
+
     <!-- Home Section -->
+
     <section class="home">
-        <h1>Welcome to Employee Management System</h1>
+
+        <h1>
+            Welcome to Employee Management System
+        </h1>
 
         <p>
             Manage employee details easily and efficiently.
         </p>
 
-        <a href="employees.html" class="btn">View Employees</a>
+        <a href="/employee" class="btn">
+            View Employees
+        </a>
+
     </section>
+
 
     <!-- Cards -->
+
     <section class="cards">
 
-        <div class="card">
-            <h3>Employees</h3>
-            <p>View all employee details.</p>
-        </div>
 
         <div class="card">
-            <h3>Add Employee</h3>
-            <p>Add new employee information.</p>
+
+            <h3>
+                Employees
+            </h3>
+
+            <p>
+                View all employee details.
+            </p>
+
         </div>
 
+
         <div class="card">
-            <h3>Manage</h3>
-            <p>Update and manage employee records.</p>
+
+            <h3>
+                Add Employee
+            </h3>
+
+            <p>
+                Add new employee information.
+            </p>
+
         </div>
+
+
+        <div class="card">
+
+            <h3>
+                Manage
+            </h3>
+
+            <p>
+                Update and manage employee records.
+            </p>
+
+        </div>
+
 
     </section>
 
+
     <!-- Footer -->
+
     <footer>
-        <p>© 2026 Employee Management System</p>
+
+        <p>
+            © 2026 Employee Management System
+        </p>
+
     </footer>
+
+
+    <!-- Theme Script -->
+
+    <script>
+
+        function toggleTheme() {
+
+            document.body.classList.toggle("dark-mode");
+
+            const button = document.querySelector(".theme-btn");
+
+
+            if (document.body.classList.contains("dark-mode")) {
+
+                localStorage.setItem("theme", "dark");
+
+                button.innerHTML = "☀️ Light";
+
+            } else {
+
+                localStorage.setItem("theme", "light");
+
+                button.innerHTML = "🌙 Dark";
+
+            }
+
+        }
+
+
+        window.onload = function () {
+
+            const savedTheme = localStorage.getItem("theme");
+
+            const button = document.querySelector(".theme-btn");
+
+
+            if (savedTheme === "dark") {
+
+                document.body.classList.add("dark-mode");
+
+                button.innerHTML = "☀️ Light";
+
+            } else {
+
+                button.innerHTML = "🌙 Dark";
+
+            }
+
+        };
+
+    </script>
+
 
 </body>
 

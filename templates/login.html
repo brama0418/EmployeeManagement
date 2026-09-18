@@ -2,28 +2,174 @@
 <html>
 
 <head>
+
     <title>Login</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: aliceblue;
+        }
+
+        /* ---------------- LOGIN CONTAINER ---------------- */
+
+        .login-container {
+            width: 350px;
+            margin: 100px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ---------------- HEADING ---------------- */
+
+        h2 {
+            text-align: center;
+            color: #302b63;
+            margin-bottom: 30px;
+        }
+
+        /* ---------------- LABELS ---------------- */
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* ---------------- INPUTS ---------------- */
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* ---------------- LOGIN BUTTON ---------------- */
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #302b63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #00bcd4;
+        }
+
+        /* ---------------- REGISTER LINK ---------------- */
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        .register-link a {
+            color: #302b63;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-link a:hover {
+            color: #00bcd4;
+        }
+
+        /* ---------------- DARK THEME ---------------- */
+
+        body.dark-mode {
+            background-color: #1e1e1e;
+        }
+
+        body.dark-mode .login-container {
+            background-color: #2b2b2b;
+        }
+
+        body.dark-mode h2 {
+            color: #00bcd4;
+        }
+
+        body.dark-mode label {
+            color: white;
+        }
+
+        body.dark-mode input[type="text"],
+        body.dark-mode input[type="password"] {
+            background-color: #3a3a3a;
+            color: white;
+            border-color: #666;
+        }
+
+        body.dark-mode .register-link {
+            color: #ddd;
+        }
+
+        body.dark-mode .register-link a {
+            color: #00bcd4;
+        }
+    </style>
+
 </head>
+
 
 <body>
 
-    <h2>Login Form</h2>
+    <div class="login-container">
 
-    <form action="/login" method="post">
+        <h2>Login Form</h2>
 
-        <label>Username:</label>
-        <input type="text" id="username" name="username" required>
+        <form action="/login" method="post">
 
-        <br><br>
+            <label>Username:</label>
 
-        <label>Password:</label>
-        <input type="password" id="password" name="password" required>
+            <input type="text" id="username" name="username" required>
 
-        <br><br>
 
-        <input type="submit" value="Login">
+            <label>Password:</label>
 
-    </form>
+            <input type="password" id="password" name="password" required>
+
+
+            <input type="submit" value="Login">
+
+        </form>
+
+
+        <div class="register-link">
+
+            I don't have an account?
+            <a href="/register">Register</a>
+
+        </div>
+
+    </div>
+
+
+    <!-- LOAD SAVED THEME -->
+
+    <script>
+
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme === "dark") {
+
+            document.body.classList.add("dark-mode");
+
+        }
+
+    </script>
 
 </body>
 

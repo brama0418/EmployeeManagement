@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 import sqlite3
 
 app = Flask(__name__)
+app.secret_key = "employee-management-secret"
 
 
 # ---------------- DATABASE CONNECTION ----------------
@@ -46,6 +47,10 @@ conn.close()
 
 @app.route("/")
 def home():
+
+    if "username" not in session:
+        return redirect("/login")
+
     return render_template("navbar.html")
 
 
@@ -119,6 +124,8 @@ def login():
 
         if user:
 
+            session["username"] = username
+
             return redirect("/")
 
         return "Invalid username or password"
@@ -179,6 +186,9 @@ def add_employee():
 @app.route("/employee")
 def employee():
 
+    if "username" not in session:
+        return redirect("/login")
+
     conn = get_db_connection()
     cursor = conn.cursor()
 
@@ -201,6 +211,9 @@ def employee():
 
 @app.route("/search", methods=["GET", "POST"])
 def search_employee():
+
+    if "username" not in session:
+        return redirect("/login")
 
     employees = []
     search_name = ""
@@ -240,6 +253,9 @@ def search_employee():
 
 @app.route("/edit-employee/<int:id>", methods=["GET", "POST"])
 def edit_employee(id):
+
+    if "username" not in session:
+        return redirect("/login")
 
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -294,6 +310,14 @@ def edit_employee(id):
         "edit-employee.html",
         employee=employee
     )
+# ---------------- LOGOUT ----------------
+
+@app.route("/logout")
+def logout():
+
+    session.clear()
+
+    return redirect("/login")
 
 
 # ---------------- DELETE EMPLOYEE ----------------
@@ -301,10 +325,11 @@ def edit_employee(id):
 @app.route("/delete-employee/<int:id>")
 def delete_employee(id):
 
+    if "username" not in session:
+        return redirect("/login")
+
     conn = get_db_connection()
     cursor = conn.cursor()
-
-    
 
     cursor.execute("""
         DELETE FROM employee
